@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- This page provides mock login and registration for the Stitch Money+ concept site. -->
+<html lang="en">
+<head>
+  <!-- The charset keeps the auth page text portable. -->
+  <meta charset="UTF-8" />
+  <!-- The viewport makes the forms usable on mobile devices. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- The title names the browser tab. -->
+  <title>Login or Register | Stitch Money+</title>
+  <!-- The shared stylesheet keeps the auth page consistent with the rest of the site. -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- The skip link lets keyboard users jump straight to the forms. -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- The shared header keeps navigation consistent across the multi-page site. -->
+  <header class="site-header" data-header>
+    <!-- The brand link returns to the home page. -->
+    <a class="brand" href="index.html" aria-label="Stitch Money Plus home"><span class="brand-mark" aria-hidden="true">S+</span><span>Stitch Money+</span></a>
+    <!-- The mobile menu button opens the responsive navigation. -->
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span></span><span></span><span></span><span class="sr-only">Open menu</span></button>
+    <!-- The navigation includes the new account page. -->
+    <nav class="site-nav" id="site-nav" data-nav><a href="features.html">Features</a><a href="improvements.html">Improvements</a><a href="demo.html">Demo</a><a href="security.html">Security</a><a href="pricing.html">Pricing</a><a href="login.html">Account</a></nav>
+    <!-- The header actions separate login from creating a new account. -->
+    <div class="header-actions"><a class="text-link" href="#login">Log in</a><a class="button button-small" href="#register">Register</a></div>
+  </header>
+
+  <!-- The main content contains the auth hero and both forms. -->
+  <main id="main">
+    <!-- The auth hero explains that the page is a safe mock. -->
+    <section class="auth-hero section-band">
+      <!-- The copy sets expectations for the fake account flow. -->
+      <div>
+        <p class="eyebrow">Account access</p>
+        <h1>Log in or create your Stitch Money+ account.</h1>
+        <p>This is a front-end demo only. The forms act like they work, but they do not send or store real passwords, ID numbers, bank details, or card details.</p>
+      </div>
+      <!-- The trust panel lists expected account protections. -->
+      <aside class="auth-trust-card">
+        <span class="card-label">Mock security flow</span>
+        <ul>
+          <li>Passkey-ready sign-in concept</li>
+          <li>Two-factor approval prompt</li>
+          <li>Device and session controls</li>
+          <li>Privacy-first onboarding copy</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- The auth workspace places login and register panels side by side. -->
+    <section class="auth-grid section-band">
+      <!-- The login form simulates returning user access. -->
+      <form class="auth-card" id="login" data-login-form>
+        <p class="eyebrow">Log in</p>
+        <h2>Welcome back.</h2>
+        <!-- The email field identifies the mock user. -->
+        <label for="loginEmail">Email address</label>
+        <input class="field" id="loginEmail" name="email" type="email" placeholder="you@example.com" required />
+        <!-- The password field demonstrates a normal sign-in pattern. -->
+        <label for="loginPassword">Password</label>
+        <input class="field" id="loginPassword" name="password" type="password" placeholder="Enter any mock password" required />
+        <!-- The remember checkbox mimics expected account convenience. -->
+        <label class="check-row"><input type="checkbox" name="remember" /> Remember this device</label>
+        <!-- The submit button triggers a mock success message. -->
+        <button class="button full-width" type="submit">Log in</button>
+        <!-- The form message is updated by JavaScript. -->
+        <p class="form-message" data-login-message aria-live="polite"></p>
+      </form>
+
+      <!-- The registration form simulates new account creation. -->
+      <form class="auth-card" id="register" data-register-form>
+        <p class="eyebrow">Register</p>
+        <h2>Create an account.</h2>
+        <!-- The full name field personalizes the mock confirmation. -->
+        <label for="registerName">Full name</label>
+        <input class="field" id="registerName" name="name" type="text" placeholder="Amani Nkosi" required />
+        <!-- The email field collects the new account email. -->
+        <label for="registerEmail">Email address</label>
+        <input class="field" id="registerEmail" name="email" type="email" placeholder="you@example.com" required />
+        <!-- The phone field reflects a South African money-app onboarding flow. -->
+        <label for="registerPhone">Mobile number</label>
+        <input class="field" id="registerPhone" name="phone" type="tel" placeholder="+27 82 000 0000" required />
+        <!-- The plan selector lets users start with a preferred tier. -->
+        <label for="registerPlan">Start with plan</label>
+        <select class="field" id="registerPlan" name="plan"><option>Free</option><option>Plus</option><option>Premium</option></select>
+        <!-- The consent checkbox makes the mock onboarding feel realistic. -->
+        <label class="check-row"><input type="checkbox" name="terms" required /> I agree to the mock terms for this concept demo</label>
+        <!-- The submit button triggers a mock account creation message. -->
+        <button class="button full-width" type="submit">Create mock account</button>
+        <!-- The form message is updated by JavaScript. -->
+        <p class="form-message" data-register-message aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- The account features section shows what users expect after login. -->
+    <section class="account-preview section-band">
+      <!-- The heading explains post-login capability. -->
+      <div class="section-heading">
+        <p class="eyebrow">After login</p>
+        <h2>Expected account controls.</h2>
+      </div>
+      <!-- The cards describe account-level features. -->
+      <div class="module-grid">
+        <article><h3>Profile verification</h3><p>Manage identity checks, phone verification, and linked devices.</p></article>
+        <article><h3>Security center</h3><p>Review sessions, enable biometrics, and freeze risky payment methods.</p></article>
+        <article><h3>Notification settings</h3><p>Choose alerts for budgets, Pay Later, rewards, disputes, and subscriptions.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <!-- The footer clarifies that this is a concept page. -->
+  <footer class="site-footer"><p>This is an independent concept website, not an official Stitch page.</p><p>Login and registration are mock-only and do not authenticate.</p></footer>
+  <!-- The shared script powers navigation and the mock auth forms. -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<!-- This document is a concept landing page for an improved Stitch Money consumer experience. -->
+<html lang="en">
+<head>
+  <!-- The charset keeps punctuation and currency symbols rendering correctly. -->
+  <meta charset="UTF-8" />
+  <!-- The viewport tag makes the layout responsive on phones, tablets, and desktops. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- The title appears in the browser tab. -->
+  <title>Stitch Money+ | Smarter Payments for South Africa</title>
+  <!-- This description is what search engines and link previews can summarize. -->
+  <meta name="description" content="A concept redesign for Stitch Money with transparent fees, smarter rewards, budgeting, payment status, privacy controls, and human support." />
+  <!-- The stylesheet contains the full visual system and responsive layout. -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- The skip link helps keyboard and screen-reader users jump past navigation. -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- The header contains brand, navigation, and the main account actions. -->
+  <header class="site-header" data-header>
+    <!-- The brand lockup uses text so it remains sharp and accessible. -->
+    <a class="brand" href="index.html" aria-label="Stitch Money Plus home">
+      <!-- The mark is a small CSS-styled visual asset for the concept identity. -->
+      <span class="brand-mark" aria-hidden="true">S+</span>
+      <!-- The wordmark clarifies this is an enhanced concept. -->
+      <span>Stitch Money+</span>
+    </a>
+
+    <!-- The mobile menu button controls the navigation on narrow screens. -->
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <!-- The spans become the hamburger lines through CSS. -->
+      <span></span>
+      <span></span>
+      <span></span>
+      <!-- The visually hidden text gives the icon a readable name. -->
+      <span class="sr-only">Open menu</span>
+    </button>
+
+    <!-- The navigation links move users to the major page sections. -->
+    <nav class="site-nav" id="site-nav" data-nav>
+      <a href="features.html">Features</a>
+      <a href="improvements.html">Improvements</a>
+      <a href="demo.html">Demo</a>
+      <a href="security.html">Security</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+
+    <!-- Header calls to action offer both low-commitment and high-commitment paths. -->
+    <div class="header-actions">
+      <a class="text-link" href="demo.html">View demo</a>
+      <a class="button button-small" href="login.html#register">Register</a>
+    </div>
+  </header>
+
+  <!-- The main landmark wraps the unique page content. -->
+  <main id="main">
+    <!-- The hero section sells the improved product and contains an interactive app preview. -->
+    <section class="hero section-band" id="top">
+      <!-- The hero background image is generated with CSS gradients and supported by a live visual dashboard. -->
+      <div class="hero-copy">
+        <!-- The badge states the page is a concept so it avoids claiming to be the official Stitch site. -->
+        <p class="eyebrow">Concept redesign for South African payments</p>
+        <!-- The H1 names the product directly, as requested. -->
+        <h1>Stitch Money+</h1>
+        <!-- The lead explains the positioning in one scan-friendly paragraph. -->
+        <p class="hero-lede">A smarter money account for paying, borrowing, earning rewards, and staying in control before every rand leaves your pocket.</p>
+        <!-- The hero actions give users an immediate path into the product story. -->
+        <div class="hero-actions">
+          <a class="button" href="demo.html">Explore the live demo</a>
+          <a class="button button-ghost" href="improvements.html">See what is improved</a>
+        </div>
+        <!-- The proof row highlights available public Stitch strengths plus concept additions. -->
+        <dl class="proof-strip" aria-label="Product highlights">
+          <div>
+            <dt>6m+</dt>
+            <dd>South Africans already paying with Stitch</dd>
+          </div>
+          <div>
+            <dt>24/7</dt>
+            <dd>Payment visibility and support routing</dd>
+          </div>
+          <div>
+            <dt>R0</dt>
+            <dd>Monthly fee in this concept plan</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- The phone preview is the primary visual asset and shows the improved experience. -->
+      <aside class="phone-visual" aria-label="Stitch Money Plus app preview">
+        <!-- The phone shell frames the app dashboard. -->
+        <div class="phone-shell">
+          <!-- The app top bar includes account state and a privacy toggle. -->
+          <div class="phone-top">
+            <span>Today</span>
+            <button class="privacy-chip" type="button" data-privacy-toggle aria-pressed="false">Privacy on</button>
+          </div>
+          <!-- The balance card gives the user a fast financial snapshot. -->
+          <section class="balance-card">
+            <span class="card-label">Spendable balance</span>
+            <strong data-balance>R 8,420.55</strong>
+            <small>After bills, savings, and Pay Later</small>
+          </section>
+          <!-- The route monitor makes invisible payment processing visible. -->
+          <section class="route-card">
+            <div>
+              <span class="card-label">Best payment route</span>
+              <strong data-route-title>Capitec Pay</strong>
+            </div>
+            <span class="route-status" data-route-status>Lowest fee</span>
+          </section>
+          <!-- The insight list shows what the redesigned app would actively monitor. -->
+          <section class="insight-list">
+            <article>
+              <span class="dot mint"></span>
+              <p>R 230 reward available at checkout</p>
+            </article>
+            <article>
+              <span class="dot coral"></span>
+              <p>Netflix debit order due in 2 days</p>
+            </article>
+            <article>
+              <span class="dot blue"></span>
+              <p>Dispute update: merchant replied</p>
+            </article>
+          </section>
+          <!-- The mini chart uses div bars so it remains lightweight and responsive. -->
+          <section class="mini-chart" aria-label="Weekly spend trend">
+            <span style="height: 44%"></span>
+            <span style="height: 64%"></span>
+            <span style="height: 38%"></span>
+            <span style="height: 72%"></span>
+            <span style="height: 48%"></span>
+            <span style="height: 88%"></span>
+            <span style="height: 54%"></span>
+          </section>
+        </div>
+      </aside>
+    </section>
+
+    <!-- This compact home section links to the full pages instead of containing every detail. -->
+    <section class="features section-band" id="features">
+      <!-- The section header explains that the home page is now only a gateway. -->
+      <div class="section-heading">
+        <p class="eyebrow">Choose where to go</p>
+        <h2>Explore the product across dedicated pages.</h2>
+      </div>
+      <!-- The feature grid now acts as page navigation cards. -->
+      <div class="feature-grid">
+        <!-- Each article links to a separate page so the site is no longer one long scroll. -->
+        <article class="feature-card">
+          <span class="feature-icon">R</span>
+          <h3>Features</h3>
+          <p>See the money tools added to the concept app.</p>
+          <a class="card-link" href="features.html">Open features</a>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon">%</span>
+          <h3>Improvements</h3>
+          <p>Compare the upgraded experience against the current Stitch Money story.</p>
+          <a class="card-link" href="improvements.html">Open improvements</a>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon">B</span>
+          <h3>Live demo</h3>
+          <p>Try the payment method calculator and checkout recommendation.</p>
+          <a class="card-link" href="demo.html">Open demo</a>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon">?</span>
+          <h3>Pricing</h3>
+          <p>Review the transparent consumer plan and join the concept waitlist.</p>
+          <a class="card-link" href="pricing.html">Open pricing</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- The footer provides source context and a disclaimer. -->
+  <footer class="site-footer">
+    <p>This is an independent concept website, not an official Stitch page.</p>
+    <p>Inspired by public Stitch product information: pay-ins, payouts, Pay Later, rewards, security, and omnichannel payments.</p>
+  </footer>
+
+  <!-- The script file powers the menu, calculator, privacy toggle, and form confirmation. -->
+  <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<!-- This page holds the expanded mock product demo for Stitch Money+. -->
+<html lang="en">
+<head>
+  <!-- The charset keeps currency and form text stable. -->
+  <meta charset="UTF-8" />
+  <!-- The viewport makes dashboard controls usable on mobile. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- The title names the demo page in the browser tab. -->
+  <title>Demo | Stitch Money+</title>
+  <!-- The shared stylesheet powers every layout and component on this page. -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- The skip link improves keyboard access. -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- The shared header gives access to the other pages. -->
+  <header class="site-header" data-header>
+    <!-- The brand link returns users to the home page. -->
+    <a class="brand" href="index.html" aria-label="Stitch Money Plus home"><span class="brand-mark" aria-hidden="true">S+</span><span>Stitch Money+</span></a>
+    <!-- The mobile menu button opens and closes navigation on small screens. -->
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span></span><span></span><span></span><span class="sr-only">Open menu</span></button>
+    <!-- The navigation uses real page links instead of one-page anchors. -->
+    <nav class="site-nav" id="site-nav" data-nav><a href="features.html">Features</a><a href="improvements.html">Improvements</a><a href="demo.html">Demo</a><a href="security.html">Security</a><a href="pricing.html">Pricing</a><a href="login.html">Account</a></nav>
+    <!-- The header actions provide fast paths to feature and signup pages. -->
+    <div class="header-actions"><a class="text-link" href="features.html">See features</a><a class="button button-small" href="login.html#register">Register</a></div>
+  </header>
+
+  <!-- The main content contains the full mock dashboard. -->
+  <main id="main">
+    <!-- The demo hero introduces the working mock experience. -->
+    <section class="demo-hero section-band">
+      <!-- The hero copy explains what the demo can do. -->
+      <div>
+        <p class="eyebrow">Interactive mock banking demo</p>
+        <h1>Act like the payment is working, safely.</h1>
+        <p>This page is a front-end-only simulation. Add mock payment details, link mock bank details, run a fake checkout, choose a consumer plan, and explore the dashboard features expected from a serious money app.</p>
+        <!-- The hero actions scroll to the most practical areas. -->
+        <div class="hero-actions">
+          <a class="button" href="#checkout">Start mock payment</a>
+          <a class="button button-ghost" href="#plans">Compare plans</a>
+        </div>
+      </div>
+      <!-- The status panel previews the account state. -->
+      <aside class="account-summary" aria-label="Account summary">
+        <!-- This card shows the mock balance and plan. -->
+        <div class="summary-card primary-summary">
+          <span class="card-label">Spendable balance</span>
+          <strong data-demo-balance>R 8,420.55</strong>
+          <small data-plan-label>Current plan: Free</small>
+        </div>
+        <!-- This list shows important product status signals. -->
+        <div class="summary-list">
+          <span><strong>99.995%</strong> platform uptime target</span>
+          <span><strong>R 230</strong> rewards ready</span>
+          <span><strong>2</strong> active merchant subscriptions</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- The checkout section combines the fee calculator and fake payment setup. -->
+    <section class="workspace-shell section-band" id="checkout">
+      <!-- This header introduces the payment workspace. -->
+      <div class="workspace-heading">
+        <p class="eyebrow">Checkout simulator</p>
+        <h2>Choose a route, add mock details, and process a pretend payment.</h2>
+      </div>
+
+      <!-- The dashboard grid places the calculator next to setup forms. -->
+      <div class="dashboard-grid">
+        <!-- The calculator panel gives users a working fee comparison. -->
+        <div class="calculator" aria-label="Payment method calculator">
+          <!-- The amount control feeds JavaScript calculations. -->
+          <label for="amountRange">Purchase amount</label>
+          <div class="range-row"><input id="amountRange" type="range" min="100" max="10000" step="50" value="1450" data-amount-range /><output for="amountRange" data-amount-output>R 1,450</output></div>
+          <!-- The merchant input makes the simulated payment feel more real. -->
+          <label for="merchantName">Merchant</label>
+          <input class="field" id="merchantName" type="text" value="Takealot" data-merchant-name />
+          <!-- The method buttons update the chosen payment route. -->
+          <div class="method-list" data-method-list>
+            <button type="button" class="method active" data-method="bank"><span>Pay by bank</span><strong data-fee-bank>R 2.90 fee</strong></button>
+            <button type="button" class="method" data-method="card"><span>Card</span><strong data-fee-card>R 21.75 fee</strong></button>
+            <button type="button" class="method" data-method="later"><span>Pay Later</span><strong data-fee-later>R 48.33/month</strong></button>
+          </div>
+          <!-- The recommendation updates when amount or method changes. -->
+          <div class="recommendation" data-recommendation>Pay by bank is recommended for this amount because it has the lowest visible fee.</div>
+          <!-- This button opens the payment information modal. -->
+          <button class="button full-width" type="button" data-open-payment>Add payment information</button>
+        </div>
+
+        <!-- The banking setup panel saves mock bank details locally on the page. -->
+        <form class="setup-panel" data-bank-form>
+          <p class="eyebrow">Mock bank details</p>
+          <h3>Link a bank account</h3>
+          <!-- This select mimics South African bank choice. -->
+          <label for="bankName">Bank</label>
+          <select class="field" id="bankName" name="bankName" required>
+            <option>Capitec</option>
+            <option>FNB</option>
+            <option>Standard Bank</option>
+            <option>Absa</option>
+            <option>Nedbank</option>
+            <option>TymeBank</option>
+            <option>Investec</option>
+          </select>
+          <!-- This input collects a fake account holder name. -->
+          <label for="accountHolder">Account holder</label>
+          <input class="field" id="accountHolder" name="accountHolder" type="text" value="Amani Nkosi" required />
+          <!-- This input collects a fake account number. -->
+          <label for="accountNumber">Account number</label>
+          <input class="field" id="accountNumber" name="accountNumber" type="text" value="1234567890" required />
+          <!-- This button stores the fake bank account in the dashboard state. -->
+          <button class="button full-width" type="submit">Save mock bank</button>
+          <!-- This message confirms the fake bank link. -->
+          <p class="form-message" data-bank-message aria-live="polite"></p>
+        </form>
+
+        <!-- The payment status panel shows fake processing progress. -->
+        <section class="status-panel">
+          <p class="eyebrow">Payment status</p>
+          <h3 data-payment-status>Ready to process</h3>
+          <!-- The progress bar animates when a fake payment is submitted. -->
+          <div class="progress-track"><span data-progress-bar></span></div>
+          <!-- The status list explains the simulated steps. -->
+          <ol class="status-steps" data-status-steps>
+            <li>Waiting for payment details</li>
+            <li>Bank route not started</li>
+            <li>Merchant confirmation pending</li>
+          </ol>
+          <!-- This button runs the fake payment flow. -->
+          <button class="button full-width" type="button" data-process-payment>Process mock payment</button>
+        </section>
+      </div>
+    </section>
+
+    <!-- The plans section gives the consumer tiers requested by the user. -->
+    <section class="plans section-band" id="plans">
+      <!-- The section heading frames the tiered value ladder. -->
+      <div class="section-heading">
+        <p class="eyebrow">Consumer plans</p>
+        <h2>The more you pay, the more benefits unlock.</h2>
+      </div>
+      <!-- Each plan card includes price, features, and a selection button. -->
+      <div class="plan-grid">
+        <article class="plan-card"><span class="plan-name">Free</span><strong>R0/mo</strong><p>Essential payment tracking for everyday users.</p><ul><li>Fee comparison</li><li>Basic rewards</li><li>30-day history</li><li>Email support</li></ul><button class="button button-ghost" type="button" data-plan-button data-plan="Free">Choose Free</button></article>
+        <article class="plan-card featured-plan"><span class="plan-name">Plus</span><strong>R49/mo</strong><p>Better insight, better rewards, and faster help.</p><ul><li>2x rewards boost</li><li>Budget alerts</li><li>12-month history</li><li>Priority chat support</li><li>Pay Later health score</li></ul><button class="button" type="button" data-plan-button data-plan="Plus">Choose Plus</button></article>
+        <article class="plan-card"><span class="plan-name">Premium</span><strong>R129/mo</strong><p>Full control for power users and families.</p><ul><li>3x rewards boost</li><li>Family wallets</li><li>Advanced fraud alerts</li><li>Instant dispute escalation</li><li>Custom savings vaults</li><li>Financial coaching recap</li></ul><button class="button button-ghost" type="button" data-plan-button data-plan="Premium">Choose Premium</button></article>
+      </div>
+      <!-- This message confirms the selected plan. -->
+      <p class="plan-message" data-plan-message aria-live="polite">Free plan selected. Upgrade to unlock richer budgets, rewards, support, and account controls.</p>
+    </section>
+
+    <!-- The insights section collects expected money-app dashboard modules. -->
+    <section class="insights-dashboard section-band">
+      <!-- The transaction history shows generated and default mock payments. -->
+      <section class="dashboard-panel">
+        <div class="panel-heading"><p class="eyebrow">Transactions</p><h2>History</h2></div>
+        <div class="table-wrap">
+          <table class="transaction-table">
+            <thead><tr><th>Date</th><th>Merchant</th><th>Method</th><th>Status</th><th>Amount</th></tr></thead>
+            <tbody data-transaction-body>
+              <tr><td>Today</td><td>Superbalist</td><td>Card</td><td><span class="status-pill complete">Complete</span></td><td>-R 899.00</td></tr>
+              <tr><td>Yesterday</td><td>Mr D</td><td>Pay by bank</td><td><span class="status-pill complete">Complete</span></td><td>-R 186.50</td></tr>
+              <tr><td>03 Aug</td><td>FlySafair</td><td>Pay Later</td><td><span class="status-pill pending">Instalment</span></td><td>-R 1,240.00</td></tr>
+              <tr><td>01 Aug</td><td>Rewards</td><td>Cashback</td><td><span class="status-pill complete">Paid</span></td><td>+R 42.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- The budget panel uses graph bars to visualize category usage. -->
+      <section class="dashboard-panel">
+        <div class="panel-heading"><p class="eyebrow">Budgets</p><h2>Monthly graph</h2></div>
+        <div class="budget-bars">
+          <div class="budget-row"><span>Groceries</span><div><i style="width: 74%"></i></div><strong>R 2,220 / R 3,000</strong></div>
+          <div class="budget-row"><span>Transport</span><div><i style="width: 46%"></i></div><strong>R 690 / R 1,500</strong></div>
+          <div class="budget-row"><span>Shopping</span><div><i style="width: 91%"></i></div><strong>R 1,820 / R 2,000</strong></div>
+          <div class="budget-row"><span>Food delivery</span><div><i style="width: 63%"></i></div><strong>R 630 / R 1,000</strong></div>
+        </div>
+      </section>
+
+      <!-- The product modules panel lists other expected app features. -->
+      <section class="dashboard-panel module-panel">
+        <div class="panel-heading"><p class="eyebrow">Expected features</p><h2>Money hub</h2></div>
+        <div class="module-grid">
+          <article><h3>Rewards wallet</h3><p>R 230 ready, R 84 pending, 2.4x boost with Plus.</p></article>
+          <article><h3>Pay Later</h3><p>R 3,700 available, next instalment due 16 Aug.</p></article>
+          <article><h3>Subscriptions</h3><p>2 active debit orders, 1 price increase detected.</p></article>
+          <article><h3>Virtual cards</h3><p>Create merchant-locked cards and freeze them instantly.</p></article>
+          <article><h3>Disputes</h3><p>Track refund evidence, merchant replies, and escalation status.</p></article>
+          <article><h3>Savings vaults</h3><p>Round up transactions and route rewards into goals.</p></article>
+        </div>
+      </section>
+
+      <!-- The contact panel gives clear support and company contact information. -->
+      <section class="dashboard-panel contact-panel">
+        <div class="panel-heading"><p class="eyebrow">Contact us</p><h2>Support options</h2></div>
+        <div class="contact-grid">
+          <article><span>Email</span><a href="mailto:support@stitchmoneyplus.example">support@stitchmoneyplus.example</a></article>
+          <article><span>Phone</span><a href="tel:+27210000000">+27 21 000 0000</a></article>
+          <article><span>Office</span><p>Cape Town, South Africa</p></article>
+          <article><span>Live chat</span><p>Available 24/7 for Plus and Premium users</p></article>
+        </div>
+      </section>
+    </section>
+
+    <!-- The payment modal collects fake card details without sending anything. -->
+    <dialog class="payment-modal" data-payment-modal>
+      <!-- The modal form stores only temporary mock state in the current page. -->
+      <form method="dialog" data-payment-form>
+        <div class="modal-heading">
+          <div><p class="eyebrow">Mock payment information</p><h2>Add details</h2></div>
+          <button class="icon-button" type="button" data-close-payment aria-label="Close payment form">X</button>
+        </div>
+        <!-- This input collects the cardholder name. -->
+        <label for="cardName">Name on card</label>
+        <input class="field" id="cardName" name="cardName" type="text" value="Amani Nkosi" required />
+        <!-- This input collects a fake card number. -->
+        <label for="cardNumber">Card number</label>
+        <input class="field" id="cardNumber" name="cardNumber" type="text" value="4242 4242 4242 4242" required />
+        <!-- This row groups expiry and CVV inputs. -->
+        <div class="split-fields">
+          <div><label for="expiry">Expiry</label><input class="field" id="expiry" name="expiry" type="text" value="08/30" required /></div>
+          <div><label for="cvv">CVV</label><input class="field" id="cvv" name="cvv" type="text" value="123" required /></div>
+        </div>
+        <!-- This select chooses the billing country. -->
+        <label for="billingCountry">Billing country</label>
+        <select class="field" id="billingCountry" name="billingCountry"><option>South Africa</option><option>Namibia</option><option>Botswana</option><option>Lesotho</option></select>
+        <!-- This button saves the mock payment method. -->
+        <button class="button full-width" type="submit">Save mock payment method</button>
+        <!-- This copy clarifies that no real payment details are stored. -->
+        <p class="fine-print">Demo only. Do not enter real banking or card information.</p>
+      </form>
+    </dialog>
+  </main>
+
+  <!-- The footer gives context. -->
+  <footer class="site-footer"><p>This is an independent concept website, not an official Stitch page.</p><p>The calculator and forms use mock data only.</p></footer>
+  <!-- The shared script powers the calculator, forms, fake payment flow, and plan selection. -->
+  <script src="script.js"></script>
+</body>
+</html>
+

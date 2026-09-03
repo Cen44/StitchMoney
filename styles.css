@@ -1,0 +1,1456 @@
+/* These custom properties centralize the design system colors, spacing, and shadows. */
+:root {
+  --ink: #111827;
+  --muted: #667085;
+  --paper: #fbfaf7;
+  --panel: #ffffff;
+  --line: #d9dee8;
+  --teal: #008f85;
+  --teal-dark: #04645f;
+  --mint: #8ff0d2;
+  --coral: #ff7d5c;
+  --blue: #3267d6;
+  --gold: #f4bd4f;
+  --shadow: 0 22px 60px rgba(17, 24, 39, 0.13);
+  --radius: 8px;
+}
+
+/* The universal selector keeps layout sizing predictable across all elements. */
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling makes anchor navigation feel intentional. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* The body sets the base type, background, and text color for the whole page. */
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+/* Links inherit the app color and remove default underlines until hover states. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Images and media are constrained so they never overflow their parent. */
+img,
+svg {
+  max-width: 100%;
+}
+
+/* Buttons and inputs inherit the page font for consistent rendering. */
+button,
+input,
+select {
+  font: inherit;
+}
+
+/* The skip link is hidden until focused for keyboard accessibility. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 20;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: white;
+  border-radius: var(--radius);
+}
+
+/* The focused skip link moves into view. */
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* The header is sticky so navigation and actions remain available while scrolling. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 4vw, 4rem);
+  border-bottom: 1px solid rgba(217, 222, 232, 0.65);
+  background: rgba(251, 250, 247, 0.88);
+  backdrop-filter: blur(18px);
+}
+
+/* The scrolled state adds visual separation when JavaScript detects page movement. */
+.site-header.is-scrolled {
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
+}
+
+/* The brand lockup aligns the mark and product name. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 800;
+}
+
+/* The brand mark creates a compact concept logo without external assets. */
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  color: white;
+  background: conic-gradient(from 180deg, var(--teal), var(--blue), var(--coral), var(--teal));
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+/* The navigation lays links horizontally on desktop. */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.35rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* Navigation hover states help users see clickable targets. */
+.site-nav a:hover,
+.text-link:hover {
+  color: var(--teal-dark);
+}
+
+/* The current navigation link is highlighted by JavaScript based on the page URL. */
+.site-nav a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.35rem;
+}
+
+/* Header actions sit together as a small command group. */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* Text links are quieter than filled buttons. */
+.text-link {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* Buttons use a strong fill for primary actions. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.85rem 1.1rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+/* Button hover states add feedback without moving layout. */
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(17, 24, 39, 0.16);
+}
+
+/* Small buttons fit the header without overwhelming it. */
+.button-small {
+  min-height: 2.5rem;
+  padding: 0.65rem 0.9rem;
+}
+
+/* Ghost buttons reverse the hierarchy for secondary actions. */
+.button-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+/* The mobile navigation button is hidden on wide screens. */
+.nav-toggle {
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+/* The hamburger lines are drawn with spans for accessible control markup. */
+.nav-toggle span:not(.sr-only) {
+  display: block;
+  width: 1.1rem;
+  height: 2px;
+  margin: 4px auto;
+  background: var(--ink);
+}
+
+/* Screen-reader-only text remains available to assistive technology. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* Section bands create consistent vertical rhythm and page width. */
+.section-band {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4vw, 4rem);
+}
+
+/* The hero uses a rich split layout with enough room for the app visual. */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+  min-height: calc(100vh - 76px);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(143, 240, 210, 0.7), transparent 28rem),
+    linear-gradient(135deg, #fbfaf7 0%, #eef7f3 48%, #f8ece6 100%);
+}
+
+/* The hero copy is constrained to keep line lengths comfortable. */
+.hero-copy {
+  max-width: 46rem;
+}
+
+/* Eyebrow text labels sections without competing with headings. */
+.eyebrow {
+  margin: 0 0 0.85rem;
+  color: var(--teal-dark);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+/* The main headline uses large type only in the true hero. */
+h1 {
+  margin: 0;
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 0.92;
+  letter-spacing: 0;
+}
+
+/* Section headings are large but smaller than the hero. */
+h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* Third-level headings support compact cards and panels. */
+h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+/* Paragraphs use muted color by default for softer reading. */
+p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* The hero lead is larger for a confident first impression. */
+.hero-lede {
+  max-width: 38rem;
+  margin: 1.25rem 0 0;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+}
+
+/* Hero action buttons wrap cleanly on mobile. */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+/* The proof strip displays compact metrics below the hero copy. */
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 3rem 0 0;
+}
+
+/* Proof items use panels so each stat can scan independently. */
+.proof-strip div {
+  padding: 1rem;
+  border: 1px solid rgba(217, 222, 232, 0.8);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Metric numbers are emphasized. */
+.proof-strip dt {
+  font-size: 1.55rem;
+  font-weight: 900;
+}
+
+/* Metric captions stay compact and readable. */
+.proof-strip dd {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+/* The phone visual centers the app preview. */
+.phone-visual {
+  display: grid;
+  place-items: center;
+}
+
+/* The phone shell is the page's main visual asset and simulates the improved app. */
+.phone-shell {
+  width: min(100%, 24rem);
+  min-height: 42rem;
+  padding: 1.1rem;
+  border: 10px solid #1d2939;
+  border-radius: 2.2rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 250, 248, 0.96)),
+    repeating-linear-gradient(135deg, rgba(0, 143, 133, 0.08) 0 8px, transparent 8px 18px);
+  box-shadow: var(--shadow);
+}
+
+/* The phone top bar spaces status and privacy controls. */
+.phone-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+/* The privacy chip toggles sensitive balance visibility. */
+.privacy-chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  background: #ffffff;
+  color: var(--teal-dark);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+/* The balance card is the primary app content block. */
+.balance-card {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 1.2rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #102a43, #008f85 65%, #ff7d5c);
+}
+
+/* The label class provides compact helper text inside app panels. */
+.card-label {
+  display: block;
+  color: inherit;
+  opacity: 0.78;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* The balance number is large enough for quick reading. */
+.balance-card strong {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 2.3rem;
+}
+
+/* The balance helper text explains what the number means. */
+.balance-card small {
+  display: block;
+  margin-top: 0.4rem;
+  opacity: 0.82;
+}
+
+/* The route card makes backend routing visible to users. */
+.route-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+/* The route status uses color to signal a good recommendation. */
+.route-status {
+  padding: 0.35rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(143, 240, 210, 0.45);
+  color: var(--teal-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+/* The insight list stacks account alerts in the phone preview. */
+.insight-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Each insight uses compact card styling. */
+.insight-list article {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+/* Insight text stays tight inside the phone. */
+.insight-list p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+/* Dots create a small visual category marker. */
+.dot {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+/* The mint dot signals positive value. */
+.mint {
+  background: var(--mint);
+}
+
+/* The coral dot signals upcoming obligations. */
+.coral {
+  background: var(--coral);
+}
+
+/* The blue dot signals service updates. */
+.blue {
+  background: var(--blue);
+}
+
+/* The mini chart provides a visual spending trend. */
+.mini-chart {
+  display: flex;
+  align-items: end;
+  gap: 0.55rem;
+  height: 8rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+/* Chart bars animate into view and use a varied palette. */
+.mini-chart span {
+  flex: 1;
+  min-width: 0.8rem;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(180deg, var(--blue), var(--teal));
+  animation: grow 900ms ease both;
+}
+
+/* The grow animation makes the chart feel alive on load. */
+@keyframes grow {
+  from {
+    transform: scaleY(0.1);
+    transform-origin: bottom;
+  }
+  to {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+}
+
+/* Section headings keep intro copy aligned across sections. */
+.section-heading {
+  max-width: 54rem;
+  margin-bottom: 2rem;
+}
+
+/* The feature grid adapts to available width. */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* Feature cards are repeated items, so card styling is appropriate here. */
+.feature-card {
+  min-height: 15rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+}
+
+/* Feature icons are simple symbolic badges. */
+.feature-icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1.6rem;
+  border-radius: var(--radius);
+  background: #effaf7;
+  color: var(--teal-dark);
+  font-weight: 900;
+}
+
+/* Feature paragraphs are compact inside cards. */
+.feature-card p {
+  margin-bottom: 0;
+}
+
+/* Card links give home navigation cards a clear next step. */
+.card-link {
+  display: inline-flex;
+  margin-top: 1.1rem;
+  color: var(--teal-dark);
+  font-weight: 900;
+}
+
+/* Page heroes introduce each separate destination page. */
+.page-hero {
+  min-height: 48vh;
+  display: grid;
+  align-content: center;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(255, 125, 92, 0.28), transparent 24rem),
+    linear-gradient(135deg, #fbfaf7 0%, #eef7f3 100%);
+}
+
+/* Page hero paragraphs stay readable under large headings. */
+.page-hero p:not(.eyebrow) {
+  max-width: 46rem;
+  font-size: 1.15rem;
+}
+
+/* Page hero headings are large but more restrained than the home hero logo headline. */
+.page-hero h1,
+.demo-copy h1,
+.security h1,
+.pricing-card h1 {
+  max-width: 56rem;
+  font-size: clamp(2.6rem, 6vw, 5.6rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+/* The page grid creates a flexible layout for dedicated feature pages. */
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  background: #ffffff;
+}
+
+/* Detail cards are repeated content blocks for the feature page. */
+.detail-card {
+  min-height: 18rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+}
+
+/* Detail card headings are sized for card containers rather than hero scale. */
+.detail-card h2 {
+  font-size: 1.55rem;
+  line-height: 1.15;
+}
+
+/* The demo section uses a two-column operational layout. */
+.demo {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  background: #ffffff;
+}
+
+/* Demo copy is constrained for readable lines. */
+.demo-copy {
+  max-width: 38rem;
+}
+
+/* The calculator looks like a product tool instead of a marketing card. */
+.calculator {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #f7fbf9;
+  box-shadow: var(--shadow);
+}
+
+/* Calculator labels are bold and compact. */
+.calculator label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-weight: 900;
+}
+
+/* The range row aligns the slider and numeric output. */
+.range-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* The range input spans its cell. */
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--teal);
+}
+
+/* The output badge keeps the amount stable. */
+output {
+  min-width: 6.5rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  text-align: right;
+  font-weight: 900;
+}
+
+/* Method buttons stack as selectable comparison rows. */
+.method-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+/* Each method button exposes the method and calculated fee. */
+.method {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  min-height: 4.25rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* The active method receives a strong outline. */
+.method.active {
+  border-color: var(--teal);
+  box-shadow: inset 0 0 0 1px var(--teal);
+}
+
+/* Fee text is emphasized on each method row. */
+.method strong {
+  white-space: nowrap;
+}
+
+/* The recommendation panel summarizes the best choice. */
+.recommendation {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: #102a43;
+  color: #ffffff;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+/* The full-width utility makes action buttons fill dashboard panels. */
+.full-width {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* The expanded demo hero uses a dashboard-like two-column opening. */
+.demo-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  min-height: 58vh;
+  background:
+    radial-gradient(circle at 86% 18%, rgba(244, 189, 79, 0.32), transparent 24rem),
+    linear-gradient(135deg, #fbfaf7 0%, #eef7f3 58%, #f8ece6 100%);
+}
+
+/* The expanded demo hero uses page-scale typography. */
+.demo-hero h1 {
+  max-width: 58rem;
+  font-size: clamp(2.8rem, 7vw, 6.2rem);
+  line-height: 0.96;
+}
+
+/* The account summary stacks key mock account facts. */
+.account-summary {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Summary cards present dashboard-level metrics. */
+.summary-card,
+.setup-panel,
+.status-panel,
+.dashboard-panel {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+}
+
+/* The primary summary card uses a stronger visual treatment. */
+.primary-summary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #102a43, #008f85 64%, #3267d6);
+}
+
+/* The summary balance is large for fast scanning. */
+.primary-summary strong {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+/* The summary list groups account status facts. */
+.summary-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* Summary list rows look like compact account cards. */
+.summary-list span {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+/* The workspace shell uses a quiet operational background. */
+.workspace-shell {
+  background: #ffffff;
+}
+
+/* The workspace heading keeps the dashboard intro readable. */
+.workspace-heading {
+  max-width: 58rem;
+  margin-bottom: 2rem;
+}
+
+/* The dashboard grid fits calculator, bank setup, and payment status panels. */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 1.05fr) minmax(280px, 0.8fr) minmax(280px, 0.8fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+/* Generic fields give inputs and selects a consistent app style. */
+.field {
+  width: 100%;
+  min-height: 3rem;
+  margin: 0.35rem 0 0.9rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  color: var(--ink);
+}
+
+/* Field focus states make form navigation visible. */
+.field:focus {
+  outline: 3px solid rgba(0, 143, 133, 0.18);
+  border-color: var(--teal);
+}
+
+/* Setup and status panels keep labels bold. */
+.setup-panel label,
+.payment-modal label {
+  display: block;
+  font-weight: 900;
+}
+
+/* The progress track contains the fake payment progress bar. */
+.progress-track {
+  height: 0.75rem;
+  margin: 1.2rem 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e7edf3;
+}
+
+/* The progress bar animates as the mock payment runs. */
+.progress-track span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--coral));
+  transition: width 420ms ease;
+}
+
+/* The ordered status steps explain the fake processing flow. */
+.status-steps {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* The plans section uses a warm but restrained background. */
+.plans {
+  background: #f3f0ea;
+}
+
+/* The plan grid presents three consumer tiers. */
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* Plan cards are repeated items with pricing and benefits. */
+.plan-card {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+}
+
+/* The featured plan gets a stronger border. */
+.featured-plan {
+  border-color: var(--teal);
+  box-shadow: 0 18px 40px rgba(0, 143, 133, 0.16);
+}
+
+/* Plan names act as compact tier labels. */
+.plan-name {
+  color: var(--teal-dark);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* Plan prices are the strongest text inside plan cards. */
+.plan-card strong {
+  font-size: 2.3rem;
+}
+
+/* Plan benefit lists stay compact. */
+.plan-card ul {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+/* The selected plan button shows the current choice. */
+.selected-plan {
+  outline: 3px solid rgba(0, 143, 133, 0.25);
+}
+
+/* The plan message confirms the selected tier. */
+.plan-message {
+  max-width: 54rem;
+  margin: 1rem 0 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  color: var(--teal-dark);
+  font-weight: 900;
+}
+
+/* The insights dashboard stacks larger app modules. */
+.insights-dashboard {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1rem;
+  background: #ffffff;
+}
+
+/* Dashboard panel headings keep title and section label together. */
+.panel-heading {
+  margin-bottom: 1rem;
+}
+
+/* Panel headings use compact h2 sizing inside dashboards. */
+.panel-heading h2 {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+}
+
+/* The table wrapper allows horizontal scrolling on smaller screens. */
+.table-wrap {
+  overflow-x: auto;
+}
+
+/* The transaction table uses dense, scan-friendly spacing. */
+.transaction-table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+}
+
+/* Transaction cells align data in a clean grid. */
+.transaction-table th,
+.transaction-table td {
+  padding: 0.85rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Transaction headers are visually lighter than content. */
+.transaction-table th {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Status pills label transaction state. */
+.status-pill {
+  display: inline-flex;
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+/* Complete statuses use the mint tone. */
+.status-pill.complete {
+  background: rgba(143, 240, 210, 0.45);
+  color: var(--teal-dark);
+}
+
+/* Pending statuses use the gold tone. */
+.status-pill.pending {
+  background: rgba(244, 189, 79, 0.28);
+  color: #7a5200;
+}
+
+/* Budget rows create labeled horizontal graphs. */
+.budget-bars {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Each budget row holds label, bar, and values. */
+.budget-row {
+  display: grid;
+  grid-template-columns: 8rem 1fr auto;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+/* Budget category labels are bold. */
+.budget-row span {
+  font-weight: 900;
+}
+
+/* Budget bar tracks provide the graph background. */
+.budget-row div {
+  height: 0.85rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e7edf3;
+}
+
+/* Budget bar fills show percentage spent. */
+.budget-row i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--teal), var(--coral));
+}
+
+/* Budget values are compact and right aligned. */
+.budget-row strong {
+  color: var(--muted);
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+/* The module panel spans both columns for a fuller feature inventory. */
+.module-panel,
+.contact-panel {
+  grid-column: 1 / -1;
+}
+
+/* The module grid creates compact expected-feature cards. */
+.module-grid,
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* Module cards and contact cards are small information panels. */
+.module-grid article,
+.contact-grid article {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfaf7;
+}
+
+/* Module card paragraphs stay tight. */
+.module-grid p,
+.contact-grid p {
+  margin-bottom: 0;
+}
+
+/* Contact labels describe each communication channel. */
+.contact-grid span {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--teal-dark);
+  font-weight: 900;
+}
+
+/* Contact links are prominent and accessible. */
+.contact-grid a {
+  color: var(--ink);
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+/* The native dialog is styled as a centered modal. */
+.payment-modal {
+  width: min(92vw, 36rem);
+  border: 0;
+  border-radius: var(--radius);
+  padding: 0;
+  box-shadow: var(--shadow);
+}
+
+/* The dialog backdrop dims the page behind the modal. */
+.payment-modal::backdrop {
+  background: rgba(17, 24, 39, 0.55);
+}
+
+/* The modal form adds internal spacing. */
+.payment-modal form {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* The modal heading aligns title and close button. */
+.modal-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* The close button is a compact icon-style control. */
+.icon-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+/* Split fields place expiry and CVV side by side. */
+.split-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* Fine print clarifies demo safety. */
+.fine-print {
+  margin-bottom: 0;
+  font-size: 0.86rem;
+}
+
+/* The improvements section uses a soft background to separate it. */
+.improvements {
+  background: #f3f0ea;
+}
+
+/* The comparison grid behaves like a responsive table. */
+.comparison {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* Rows use equal columns on desktop. */
+.comparison-row {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr 1.2fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+/* The header row has stronger contrast. */
+.comparison-head {
+  border-top: 0;
+  background: var(--ink);
+  color: #ffffff;
+  font-weight: 900;
+}
+
+/* Row text is kept readable and not too small. */
+.comparison-row span {
+  line-height: 1.45;
+}
+
+/* The security section pairs copy with a clear list. */
+.security {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+  background: #ffffff;
+}
+
+/* The security list removes default list styling for a cleaner checklist. */
+.security-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Each security item gets a visible checkmark and panel surface. */
+.security-list li {
+  position: relative;
+  padding: 1rem 1rem 1rem 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfaf7;
+  font-weight: 700;
+}
+
+/* The checkmark is decorative, so it is generated in CSS. */
+.security-list li::before {
+  content: "OK";
+  position: absolute;
+  left: 1rem;
+  color: var(--teal-dark);
+  font-weight: 900;
+}
+
+/* Pricing uses two blocks with a strong offer and included benefits. */
+.pricing {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+/* The pricing card highlights the zero monthly fee concept. */
+.pricing-card,
+.included {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+/* The included list keeps bundled features scannable. */
+.included ul {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+/* The pricing hero introduces the tiered pricing page. */
+.pricing-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.55fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  min-height: 52vh;
+  background:
+    radial-gradient(circle at 84% 12%, rgba(50, 103, 214, 0.22), transparent 24rem),
+    linear-gradient(135deg, #fbfaf7 0%, #eef7f3 58%, #f8ece6 100%);
+}
+
+/* The pricing hero heading uses page-scale typography. */
+.pricing-hero h1 {
+  max-width: 60rem;
+  font-size: clamp(2.7rem, 6vw, 5.7rem);
+  line-height: 0.98;
+}
+
+/* The pricing note highlights the simple pricing promise. */
+.pricing-note {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+/* The pricing note headline is stronger than body copy. */
+.pricing-note strong {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  line-height: 1.05;
+}
+
+/* Pricing detail cards sit in a three-column row. */
+.pricing-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  background: #ffffff;
+}
+
+/* The pricing comparison table needs four equal columns. */
+.pricing-comparison .comparison-row {
+  grid-template-columns: 1.1fr repeat(3, minmax(0, 1fr));
+}
+
+/* The add-ons section separates optional extras from core plans. */
+.addons {
+  background: #ffffff;
+}
+
+/* The waitlist section centers the form. */
+.waitlist {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #102a43, #04645f);
+}
+
+/* The signup form sits as one conversion card. */
+.signup-form {
+  width: min(100%, 42rem);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+/* The email label is bold and accessible. */
+.signup-form label {
+  display: block;
+  margin: 1.2rem 0 0.55rem;
+  font-weight: 900;
+}
+
+/* The email row pairs input and submit action. */
+.email-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+}
+
+/* The email input has enough height for touch use. */
+.email-row input {
+  min-height: 3rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* The form message area reserves space for confirmation text. */
+.form-message {
+  min-height: 1.5rem;
+  margin-bottom: 0;
+  color: var(--teal-dark);
+  font-weight: 800;
+}
+
+/* The footer contains the disclaimer and public-source context. */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem clamp(1rem, 4vw, 4rem);
+  border-top: 1px solid var(--line);
+  background: #ffffff;
+}
+
+/* Footer paragraphs are compact. */
+.site-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Tablet layouts reduce dense four-column content. */
+@media (max-width: 980px) {
+  /* The hero stacks so the phone preview gets enough width. */
+  .hero,
+  .demo-hero,
+  .pricing-hero,
+  .demo,
+  .security,
+  .pricing {
+    grid-template-columns: 1fr;
+  }
+
+  /* The dashboard grid stacks from three columns to one on tablets. */
+  .dashboard-grid,
+  .insights-dashboard,
+  .pricing-details {
+    grid-template-columns: 1fr;
+  }
+
+  /* Plan cards become easier to scan on medium screens. */
+  .plan-grid,
+  .module-grid,
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* The feature grid becomes two columns for medium screens. */
+  .feature-grid,
+  .page-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile layout rules keep controls tappable and text uncramped. */
+@media (max-width: 720px) {
+  /* The mobile menu button appears on small screens. */
+  .nav-toggle {
+    display: block;
+  }
+
+  /* The header actions hide to reduce crowding. */
+  .header-actions {
+    display: none;
+  }
+
+  /* The navigation becomes a dropdown panel. */
+  .site-nav {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: calc(100% + 0.5rem);
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #ffffff;
+    box-shadow: var(--shadow);
+  }
+
+  /* JavaScript applies this class when the menu is open. */
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  /* Mobile navigation links get larger tap targets. */
+  .site-nav a {
+    padding: 0.75rem;
+  }
+
+  /* The proof strip stacks because three columns are too tight. */
+  .proof-strip {
+    grid-template-columns: 1fr;
+  }
+
+  /* Feature cards stack in one column on phones. */
+  .feature-grid,
+  .page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Comparison rows become labeled blocks. */
+  .comparison-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* The pricing comparison also stacks on phones. */
+  .pricing-comparison .comparison-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* The comparison header is hidden because mobile rows are self-explanatory. */
+  .comparison-head {
+    display: none;
+  }
+
+  /* Calculator methods stack their fee text for narrow screens. */
+  .method {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  /* The email form stacks input and button. */
+  .email-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Plan and module cards stack on phones. */
+  .plan-grid,
+  .module-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Budget graphs stack labels, bars, and values for narrow screens. */
+  .budget-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Split modal fields stack so form text never compresses. */
+  .split-fields {
+    grid-template-columns: 1fr;
+  }
+
+  /* Summary list rows stack when space is tight. */
+  .summary-list span {
+    flex-direction: column;
+  }
+}

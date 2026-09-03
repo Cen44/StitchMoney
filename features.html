@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<!-- This page separates product features from the home page. -->
+<html lang="en">
+<head>
+  <!-- The charset keeps text rendering consistent. -->
+  <meta charset="UTF-8" />
+  <!-- The viewport makes this page responsive. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- The title names the current page in the browser tab. -->
+  <title>Features | Stitch Money+</title>
+  <!-- The shared stylesheet keeps every page visually consistent. -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- The skip link improves keyboard navigation. -->
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- The shared header gives the multi-page site consistent navigation. -->
+  <header class="site-header" data-header>
+    <a class="brand" href="index.html" aria-label="Stitch Money Plus home"><span class="brand-mark" aria-hidden="true">S+</span><span>Stitch Money+</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span></span><span></span><span></span><span class="sr-only">Open menu</span></button>
+    <nav class="site-nav" id="site-nav" data-nav>
+      <a href="features.html">Features</a>
+      <a href="improvements.html">Improvements</a>
+      <a href="demo.html">Demo</a>
+      <a href="security.html">Security</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="header-actions"><a class="text-link" href="demo.html">View demo</a><a class="button button-small" href="login.html#register">Register</a></div>
+  </header>
+  <!-- The main landmark contains the page-specific content. -->
+  <main id="main">
+    <!-- The page hero introduces this destination. -->
+    <section class="page-hero section-band">
+      <p class="eyebrow">Features</p>
+      <h1>Money tools that work before checkout, not after regret.</h1>
+      <p>These feature ideas extend the Stitch Money consumer experience into planning, routing, support, and privacy.</p>
+    </section>
+    <!-- The detail grid gives each feature its own space. -->
+    <section class="page-grid section-band">
+      <article class="detail-card"><span class="feature-icon">R</span><h2>Fee-first checkout</h2><p>Compare bank, card, Pay Later, and crypto costs before confirming a payment.</p></article>
+      <article class="detail-card"><span class="feature-icon">%</span><h2>Rewards optimiser</h2><p>Choose the best route for reward value, lowest fee, or fastest settlement.</p></article>
+      <article class="detail-card"><span class="feature-icon">B</span><h2>Budget lock</h2><p>Set category guardrails that warn you before spending breaks your plan.</p></article>
+      <article class="detail-card"><span class="feature-icon">?</span><h2>Dispute timeline</h2><p>Track refunds, failed payments, and merchant replies with clear status updates.</p></article>
+      <article class="detail-card"><span class="feature-icon">S</span><h2>Spendable balance</h2><p>Show what is actually available after bills, repayments, and saving goals.</p></article>
+      <article class="detail-card"><span class="feature-icon">P</span><h2>Privacy mode</h2><p>Hide balances and sensitive amounts instantly when using the app in public.</p></article>
+    </section>
+  </main>
+  <!-- The footer repeats the concept disclaimer. -->
+  <footer class="site-footer"><p>This is an independent concept website, not an official Stitch page.</p><p>Built as a multi-page static site.</p></footer>
+  <!-- The shared script powers navigation and optional controls. -->
+  <script src="script.js"></script>
+</body>
+</html>
+
