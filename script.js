@@ -88,17 +88,39 @@ const planButtons = [...document.querySelectorAll("[data-plan-button]")];
 const planMessage = document.querySelector("[data-plan-message]");
 // This query collects the transaction history table body.
 const transactionBody = document.querySelector("[data-transaction-body]");
+const resetDemoButton = document.querySelector("[data-reset-demo]");
 
 // This variable tracks the selected payment method.
 let selectedMethod = "bank";
 // This variable stores the original balance text for privacy-mode restoration when a balance exists.
 let visibleBalance = balance ? balance.textContent : "";
 // This variable tracks whether a mock payment method has been saved.
-let hasMockPaymentMethod = false;
+const DEMO_STORAGE_KEY = "stitch-money-demo-v1";
+const savedDemoState = (() => {
+  try { return JSON.parse(localStorage.getItem(DEMO_STORAGE_KEY) || "{}"); }
+  catch { return {}; }
+})();
+let hasMockPaymentMethod = Boolean(savedDemoState.hasMockPaymentMethod);
 // This variable tracks whether mock bank details have been saved.
-let hasMockBank = false;
+let hasMockBank = Boolean(savedDemoState.hasMockBank);
 // This variable tracks the numeric demo balance for fake transaction updates.
-let demoBalanceValue = 8420.55;
+let demoBalanceValue = Number.isFinite(savedDemoState.balance) ? savedDemoState.balance : 8420.55;
+let mockTransactions = Array.isArray(savedDemoState.transactions) ? savedDemoState.transactions : [];
+
+// Store demo-only state. Never save card numbers, CVV, account numbers, or names.
+function saveDemoState() {
+  try {
+    localStorage.setItem(DEMO_STORAGE_KEY, JSON.stringify({
+      balance: demoBalanceValue,
+      plan: savedDemoState.plan || "Free",
+      hasMockPaymentMethod,
+      hasMockBank,
+      transactions: mockTransactions
+    }));
+  } catch (error) {
+    console.warn("Demo state could not be saved in this browser.", error);
+  }
+}
 
 // This function marks the active navigation link on multi-page views.
 function markCurrentPage() {
@@ -213,6 +235,8 @@ function addMockTransaction(merchant, methodLabel, amount) {
   row.innerHTML = `<td>Now</td><td>${escapeHtml(merchant)}</td><td>${escapeHtml(methodLabel)}</td><td><span class="status-pill complete">Complete</span></td><td>-${formatRand(amount)}</td>`;
   // This line inserts the new transaction above older rows.
   transactionBody.prepend(row);
+  mockTransactions.unshift({ merchant, method: methodLabel, amount, date: new Date().toISOString() });
+  saveDemoState();
 }
 
 // This function updates the demo balance after a fake transaction.
@@ -225,6 +249,7 @@ function updateDemoBalance(amount) {
   demoBalanceValue = Math.max(0, demoBalanceValue - amount);
   // This line renders the updated mock balance.
   demoBalance.textContent = formatRand(demoBalanceValue);
+  saveDemoState();
 }
 
 // This function runs a fake payment-processing sequence for the dashboard.
@@ -239,6 +264,11 @@ function processMockPayment() {
   const merchant = merchantName && merchantName.value.trim() ? merchantName.value.trim() : "Demo merchant";
   // This value reads the selected payment label for history.
   const methodLabel = paymentMethods[selectedMethod].label;
+  if (amount > demoBalanceValue) {
+    paymentStatus.textContent = "Insufficient demo balance";
+    setStatusSteps(["Payment not started", `Available: ${formatRand(demoBalanceValue)}`, "Lower the amount or reset demo data"]);
+    return;
+  }
   // This branch asks the user to add payment details before processing.
   if (!hasMockPaymentMethod) {
     paymentStatus.textContent = "Add mock payment details first";
@@ -301,6 +331,8 @@ function choosePlan(planName) {
   if (planLabel) {
     planLabel.textContent = `Current plan: ${planName}`;
   }
+  savedDemoState.plan = planName;
+  saveDemoState();
   // This loop resets visual state for every plan button.
   planButtons.forEach((button) => button.classList.remove("selected-plan"));
   // This line marks the chosen plan button.
@@ -445,6 +477,7 @@ if (paymentForm && paymentModal && paymentStatus) {
     event.preventDefault();
     // This line marks the fake payment method as saved.
     hasMockPaymentMethod = true;
+    saveDemoState();
     // This line updates the payment status heading.
     paymentStatus.textContent = "Mock payment method saved";
     // This line updates the processing checklist.
@@ -464,6 +497,7 @@ if (bankForm && bankMessage) {
     const bankName = new FormData(bankForm).get("bankName");
     // This line marks a fake bank account as linked.
     hasMockBank = true;
+    saveDemoState();
     // This line confirms the fake bank link to the user.
     bankMessage.textContent = `${bankName} linked in demo mode.`;
     // This line updates the status panel when it exists.
@@ -480,6 +514,34 @@ if (processPaymentButton) {
   // This listener starts the fake payment-processing sequence.
   processPaymentButton.addEventListener("click", processMockPayment);
 }
+
+// Restore the demo's non-sensitive state across page reloads.
+if (demoBalance) demoBalance.textContent = formatRand(demoBalanceValue);
+if (planLabel && savedDemoState.plan) planLabel.textContent = `Current plan: ${savedDemoState.plan}`;
+if (transactionBody && mockTransactions.length) {
+  mockTransactions.slice().reverse().forEach((transaction) => {
+    const row = document.createElement("tr");
+    const date = new Date(transaction.date);
+    const cells = [date.toLocaleDateString("en-ZA"), transaction.merchant, transaction.method, "Complete", `-${formatRand(transaction.amount)}`];
+    cells.forEach((value, index) => {
+      const cell = document.createElement("td");
+      if (index === 3) {
+        const pill = document.createElement("span");
+        pill.className = "status-pill complete";
+        pill.textContent = value;
+        cell.append(pill);
+      } else cell.textContent = value;
+      row.append(cell);
+    });
+    transactionBody.prepend(row);
+  });
+}
+if (bankMessage && hasMockBank) bankMessage.textContent = "A mock bank is linked in this browser.";
+if (paymentStatus && hasMockPaymentMethod) paymentStatus.textContent = "Mock payment method ready";
+if (resetDemoButton) resetDemoButton.addEventListener("click", () => {
+  localStorage.removeItem(DEMO_STORAGE_KEY);
+  window.location.reload();
+});
 
 // This loop wires consumer plan buttons to the selection state.
 planButtons.forEach((button) => {

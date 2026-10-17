@@ -109,7 +109,7 @@
           <input class="field" id="accountHolder" name="accountHolder" type="text" value="Amani Nkosi" required />
           <!-- This input collects a fake account number. -->
           <label for="accountNumber">Account number</label>
-          <input class="field" id="accountNumber" name="accountNumber" type="text" value="1234567890" required />
+          <input class="field" id="accountNumber" name="accountNumber" type="text" inputmode="numeric" autocomplete="off" placeholder="Demo account number" required />
           <!-- This button stores the fake bank account in the dashboard state. -->
           <button class="button full-width" type="submit">Save mock bank</button>
           <!-- This message confirms the fake bank link. -->
@@ -154,8 +154,8 @@
     <!-- The insights section collects expected money-app dashboard modules. -->
     <section class="insights-dashboard section-band">
       <!-- The transaction history shows generated and default mock payments. -->
-      <section class="dashboard-panel">
-        <div class="panel-heading"><p class="eyebrow">Transactions</p><h2>History</h2></div>
+        <section class="dashboard-panel">
+        <div class="panel-heading"><p class="eyebrow">Transactions</p><h2>History</h2><button class="button button-ghost" type="button" data-reset-demo>Reset demo data</button></div>
         <div class="table-wrap">
           <table class="transaction-table">
             <thead><tr><th>Date</th><th>Merchant</th><th>Method</th><th>Status</th><th>Amount</th></tr></thead>
@@ -215,14 +215,14 @@
         </div>
         <!-- This input collects the cardholder name. -->
         <label for="cardName">Name on card</label>
-        <input class="field" id="cardName" name="cardName" type="text" value="Amani Nkosi" required />
+        <input class="field" id="cardName" name="cardName" type="text" placeholder="Demo cardholder" autocomplete="off" required />
         <!-- This input collects a fake card number. -->
         <label for="cardNumber">Card number</label>
-        <input class="field" id="cardNumber" name="cardNumber" type="text" value="4242 4242 4242 4242" required />
+        <input class="field" id="cardNumber" name="cardNumber" type="text" inputmode="numeric" placeholder="4242 4242 4242 4242 (demo only)" autocomplete="off" required />
         <!-- This row groups expiry and CVV inputs. -->
         <div class="split-fields">
-          <div><label for="expiry">Expiry</label><input class="field" id="expiry" name="expiry" type="text" value="08/30" required /></div>
-          <div><label for="cvv">CVV</label><input class="field" id="cvv" name="cvv" type="text" value="123" required /></div>
+          <div><label for="expiry">Expiry</label><input class="field" id="expiry" name="expiry" type="text" placeholder="MM/YY" autocomplete="off" required /></div>
+          <div><label for="cvv">CVV</label><input class="field" id="cvv" name="cvv" type="password" inputmode="numeric" placeholder="123" autocomplete="off" required /></div>
         </div>
         <!-- This select chooses the billing country. -->
         <label for="billingCountry">Billing country</label>
